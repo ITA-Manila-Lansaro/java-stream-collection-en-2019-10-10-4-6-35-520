@@ -5,6 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -60,9 +61,12 @@ public class Add {
                 .sum();
     }
 
-//    public double getMedianOfEven(List<Integer> arrayList) {
-//        throw new NotImplementedException();
-//    }
+    public double getMedianOfEven(List<Integer> arrayList) {
+        return arrayList.stream()
+                .filter(a -> a%2 == 0)
+                .sorted(Comparator.naturalOrder())
+                .reduce(0, (subtotal , element) -> subtotal+element / 2 );
+    }
 
     public double getAverageOfEven(List<Integer> arrayList) {
        return arrayList.stream()
@@ -72,20 +76,42 @@ public class Add {
     }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
-        throw new NotImplementedException();
+        return arrayList.contains(specialElment) && specialElment % 2 == 0;
+
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .filter(a -> a % 2 == 0)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
-//    public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-//        throw new NotImplementedException();
-//    }
+    public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
+        List<Integer> even = arrayList.stream()
+                .filter(a -> a % 2 == 0)
+                .sorted()
+                .collect(Collectors.toList());
+        List<Integer> odd = arrayList.stream()
+                .filter(a -> a % 2 != 0)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+
+        even.addAll(odd);
+        return even;
+    }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
-        return arrayList.stream()
+        List<Integer> returnArr = null;
+        arrayList = arrayList.stream()
                 .map(a -> a *3)
-                .map()
+                .collect(Collectors.toList());
+
+        for(int x = 0; x < arrayList.size() ; x++){
+            returnArr.add(arrayList.get(x) + arrayList.get(x - 1) + arrayList.get(x + 1));
+        }
+
+        return  returnArr;
+
     }
 }
