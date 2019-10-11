@@ -37,7 +37,7 @@ public class FilterTest {
     }
 
     @Test
-    public void should_return_different_elements_in_arrayList() {
+        public void should_return_different_elements_in_arrayList() {
         //Remove duplicate elements from an array
         Integer[] array = new Integer[]{1, 1, 1, 2, 3};
         List<Integer> arrayList = Arrays.asList(array);
