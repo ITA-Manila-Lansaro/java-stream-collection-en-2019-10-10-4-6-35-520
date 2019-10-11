@@ -13,19 +13,34 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .reduce(0 , (a , b) ->
+                        a > b ? a:b);
     }
 
     public double getMinimum() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .reduce( 1,(a , b) ->
+                        a < b ? a:b);
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        double average = arrayList.stream()
+                .reduce(0, (a, b) -> a + b);
+        return average/arrayList.size();
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        arrayList.stream()
+                .sorted();
+        int arrSize = arrayList.size();
+        double median;
+
+        if (arrSize % 2 == 0 ){
+             median = (double) (arrayList.get((arrSize / 2) - 1) + (double) arrayList.get(arrSize / 2))/2;
+            return median;
+        }
+            return arrayList.get(arrSize / 2);
     }
 
     public int getFirstEven() {
@@ -41,7 +56,7 @@ public class Reduce {
     }
 
     public Double getMedianInLinkList(SingleLink singleLink) {
-        throw new NotImplementedException();
+
     }
 
     public int getLastOdd() {

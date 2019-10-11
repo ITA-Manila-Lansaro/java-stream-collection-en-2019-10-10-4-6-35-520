@@ -13,7 +13,8 @@ public class MyMap {
     private List<String> letterList = Arrays.asList(letters);
 
     public MyMap(List<Integer> array) {
-        this.array = array;
+//        return array.stream()
+//                .map()
     }
 
     public List<Integer> getTriple() {
