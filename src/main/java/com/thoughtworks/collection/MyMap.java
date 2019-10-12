@@ -3,6 +3,7 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -34,19 +35,26 @@ public class MyMap {
 
         return array.stream()
                 .map(a -> {
-                   if (a < 27){
-                       Integer twoDValue = a / 26;
-                        return letters[twoDValue]+letters[]
+                   if (a > 26){
+                       Double twoDValue = a % 26 == 0 ? Math.ceil(a / 26) -1 : Math.ceil(a / 26) ;
+                       Integer intTwoDValue = (int) Math.round(twoDValue);
+                       Integer secondLetter = (a - (26 * intTwoDValue)) < 1 ? (a - (26 * intTwoDValue)) :(a - (26 * intTwoDValue)) -1;
+                       String letter = letters[intTwoDValue - 1] + letters[secondLetter];
+                       return letter;
                    }
                    return letters[a - 1];
                 }).collect(Collectors.toList());
     }
 
     public List<Integer> sortFromBig() {
-        throw new NotImplementedException();
+        return array.stream()
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
     }
 
     public List<Integer> sortFromSmall() {
-        throw new NotImplementedException();
+        return array.stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
     }
 }
